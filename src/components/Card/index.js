@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import api from '../../utils/Api';
 import CardMui from '@mui/material/Card';
@@ -18,14 +18,18 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Link } from "react-router-dom";
+import UserContext from '../../contexts/userContext';
+import PostContext from '../../contexts/postContext';
 import dayjs from 'dayjs';
 import './index.css';
 
 
-export const Card = ({ itemPost, isInFavorites, setFavorites, user, setPostList }) => {
+export const Card = ({ itemPost, isInFavorites, setFavorites }) => {
 
    const [open, setOpen] = useState(false);
-
+   const {user} = useContext(UserContext);
+   const {setPostList} = useContext(PostContext);
+   
    const handleClickOpen = () => {
        setOpen(true);
    };

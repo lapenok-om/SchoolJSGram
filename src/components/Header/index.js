@@ -3,15 +3,18 @@ import style from './style.module.css';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import { AboutMe } from '../AboutMe';
+
+
 import Logo from '../Logo';
 
-export const Header = ({user}) => {
+export const Header = () => {
+    
       return (
         <div className={style.header}>
             <div className="container">
                 <div className={style.header__wrapper}>
                     <div><Logo /></div>
-                    <div><AboutMe userInfo={user}/></div>
+                    <div><AboutMe /></div>
                     <div>
                     <Breadcrumbs aria-label="breadcrumb">
                         <Link underline="hover" href="/">

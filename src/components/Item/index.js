@@ -51,7 +51,7 @@ export const Item = () => {
   return (
     <Container maxWidth="1000">
       <div>
-        <Button variant="contained"  style={{marginBottom: '40px'}} onClick={() => navigate('/')} >Назад</Button>
+        <Button variant="contained"  style={{marginBottom: '20px'}} onClick={() => navigate('/')} >Назад</Button>
       </div>
       
       <Paper elevation={2}>
@@ -92,7 +92,7 @@ export const Item = () => {
             
           </Grid>
           <form onSubmit={handleComment}>
-          <Grid container item xs={12} spacing={2}>
+          <Grid container item xs={12} spacing={2} sx={{ marginTop: '5px', marginLeft: '5px' }}>
           <Grid item >
              <CommentIcon color="primary" />
           </Grid>
@@ -103,7 +103,7 @@ export const Item = () => {
           
           
           </Grid>
-          <Grid item style={{marginLeft: '100px', marginTop: '10px'}}>
+          <Grid item style={{marginLeft: '100px', marginTop: '15px'}}>
           <Button type='submit' variant="contained" endIcon={<SendIcon />}>
           Отправить
            </Button>
@@ -133,7 +133,7 @@ export const Item = () => {
                 color="text.secondary"
               >
       
-               {dayjs(comment.created_at).format('MMMM D, YYYY')}
+               {dayjs(comment.created_at).format('MMMM D, YYYY h:mm A')}
               </Typography>
          
             </React.Fragment>
