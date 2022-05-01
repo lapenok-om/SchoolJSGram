@@ -30,6 +30,19 @@ class Api {
 
     }
 
+    addComment(Id, comment){
+        return fetch(`${this._url}/posts/comments/${Id}`, {
+            method: 'POST',
+            headers: {
+                authorization: `Bearer ${this._token}`,
+                'Content-Type': 'application/json',
+                },
+            body: JSON.stringify(comment),
+        }).then(res => res.json())
+        .catch(err => alert(err.message));
+
+    }
+
     getMyInfo(){
         return fetch(`${this._url}/users/me`, {
             headers: {
@@ -40,8 +53,9 @@ class Api {
 
     }
 
-    getInfoAuthorComment(Id){
-        return fetch(`${this._url}/users/${Id}`, {
+    getComment(id){
+        
+        return fetch(`${this._url}/posts/comments/${id}`, {
             headers: {
                 authorization: `Bearer ${this._token}`,
                 }

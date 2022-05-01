@@ -13,28 +13,40 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import api from '../../utils/Api';
 import { useNavigate } from 'react-router-dom';
 import { Container } from '@mui/material';
+import AddCommentIcon from '@mui/icons-material/AddComment';
+import CommentIcon from '@mui/icons-material/Comment';
+import TextField from '@mui/material/TextField';
+import SendIcon from '@mui/icons-material/Send';
 import dayjs from 'dayjs';
 
 
 export const Item = () => {
     const navigate = useNavigate();
     const [item, setItem] = useState(null);
+    const [comments, setComments] = useState(null);
     const params = useParams();
-    const authorAvatar = '';
+    
 
 
     useEffect(() => {
         api.getPosts(params.itemID).
         then((data) => setItem(data));
 
+        api.getComment(params.itemID).
+        then((data) => setComments(data));
+
     }, []);
     
 
-    const getInfo = (Id) => {
-      api.getInfoAuthorComment(Id)
-      .then((data) => authorAvatar=data.avatar)
+    const handleComment = (event) => {
+      event.preventDefault();
+      const {
+          target: {comment},
+      } = event;
+     
+     api.addComment(item._id, {text: comment.value});
 
-    }
+  };
    
   return (
     <Container maxWidth="1000">
@@ -50,13 +62,11 @@ export const Item = () => {
           
             <img
                   src={`${item.image}?w=162&auto=format`}
-                  srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
                   alt={item.title}
                 
                   style={{
                     borderBottomLeftRadius: 4,
                     borderBottomRightRadius: 4,
-                    display: 'block',
                     maxHeight: 330,
                     maxWidth: 330,
                   }} />
@@ -77,9 +87,28 @@ export const Item = () => {
             <Grid item>
             <Typography color="text.secondary">{dayjs(item.created_at).format('MMMM D, YYYY')}</Typography>
             </Grid>
+
             </Grid>
             
           </Grid>
+          <form onSubmit={handleComment}>
+          <Grid container item xs={12} spacing={2}>
+          <Grid item >
+             <CommentIcon color="primary" />
+          </Grid>
+          <Grid item>
+          <TextField  name="comment" label="Комментарий" multiline rows={3} sx={{ width: '30ch' }} />
+          
+          </Grid>
+          
+          
+          </Grid>
+          <Grid item style={{marginLeft: '100px', marginTop: '10px'}}>
+          <Button type='submit' variant="contained" endIcon={<SendIcon />}>
+          Отправить
+           </Button>
+          </Grid>
+          </form>
         </Grid>
         
       <Grid item xs={6}>
@@ -87,13 +116,13 @@ export const Item = () => {
         <Typography variant="body1" gutterBottom>{item.text}</Typography>
         
         <List sx={{ width: '100%', maxWidth: 500, bgcolor: 'background.paper' }}>
-        {item.comments?.map((comment, i) => (
-          <>
-          <ListItem alignItems="flex-start" >
+        { comments?.map((comment) => (
+          <div key={comment._id}>
+          <ListItem alignItems="flex-start"  >
           <ListItemAvatar>
-            <Avatar alt={i} src={getInfo(comment.author)} />
+            <Avatar alt='avatarComment' src={comment.author.avatar} />
           </ListItemAvatar>
-          <ListItemText s
+          <ListItemText
           primary={comment.text}
           secondary={
             <React.Fragment>
@@ -114,7 +143,7 @@ export const Item = () => {
           />
          </ListItem>
           <Divider variant="inset" component="li" />
-          </>
+          </div>
         ))}
         
         </List>
