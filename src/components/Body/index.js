@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { List } from '../List';
 import { TextArea } from '../TextArea';
 import Pagination from '@mui/material/Pagination';
-
+import PostContext from '../../contexts/postContext';
 import api from '../../utils/Api';
 import './index.css';
 
-export const Body = ( {user} ) => {
+export const Body = () => {
     const [postList, setPostList] = useState(null);
     const [page, setPage] = useState(1);
     const [pageCount, setPageCount] = useState(1);
@@ -24,10 +24,11 @@ export const Body = ( {user} ) => {
 
 
   return (
+    <PostContext.Provider value={{postList, setPostList}}>
     <div>
             <TextArea />
             <div className='content__cards'>
-            <List list={postList} favorites={favorites} setFavorites={setFavorites} user={user} setPostList={setPostList} />
+            <List setFavorites={setFavorites} />
             </div>
             <Pagination sx={{ mb: 3, mt: 3, ml: 45 }}
                     count={pageCount}
@@ -37,5 +38,6 @@ export const Body = ( {user} ) => {
 
 
     </div>
+    </PostContext.Provider>
   )
 }

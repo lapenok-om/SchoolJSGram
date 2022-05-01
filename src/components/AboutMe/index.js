@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Avatar from '@mui/material/Avatar';
+import UserContext from '../../contexts/userContext';
 
 import './index.css';
 
-export const AboutMe = ({userInfo}) => {
+export const AboutMe = () => {
+  const {user} = useContext(UserContext);
+  
   return (
     <div className='about'>
-       { <Avatar src={userInfo.avatar} /> }
-        {userInfo.name}
+       { <Avatar src={user.avatar} /> }
+        {user.name}
     </div>
   )
 }
