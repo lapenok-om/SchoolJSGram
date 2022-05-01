@@ -1,0 +1,12 @@
+.container_textarea{
+    
+    display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.text{
+    width: 100%;
+}
