@@ -45,7 +45,14 @@ export const Item = () => {
       } = event;
      
      api.addComment(item._id, {text: comment.value});
-
+     
+     // здесь проблема - видимо нужна задержка между записью и чтением, так как считываются данные без нового комментария
+     api.getComment(params.itemID).
+        then((data) => {setComments(data)
+        console.log(data);
+        });
+     event.target.comment.value = '';
+   
   };
    
   return (
