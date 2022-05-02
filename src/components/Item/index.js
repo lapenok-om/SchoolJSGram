@@ -6,24 +6,23 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
 import api from '../../utils/Api';
 import { useNavigate } from 'react-router-dom';
 import { Container } from '@mui/material';
-import AddCommentIcon from '@mui/icons-material/AddComment';
 import CommentIcon from '@mui/icons-material/Comment';
 import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send';
+import { Comment } from '../Comment';
+import CommentContext from '../../contexts/commentContext';
 import dayjs from 'dayjs';
 
 
 export const Item = () => {
+    
     const navigate = useNavigate();
     const [item, setItem] = useState(null);
     const [comments, setComments] = useState(null);
+    const [load, setLoad] = useState(true);
     const params = useParams();
     
 
@@ -32,10 +31,13 @@ export const Item = () => {
         api.getPosts(params.itemID).
         then((data) => setItem(data));
 
-        api.getComment(params.itemID).
-        then((data) => setComments(data));
-
     }, []);
+
+    useEffect(() => {
+      api.getComment(params.itemID).
+      then((data) => setComments(data));
+
+  }, [load]);
     
 
     const handleComment = (event) => {
@@ -45,17 +47,16 @@ export const Item = () => {
       } = event;
      
      api.addComment(item._id, {text: comment.value});
-     
-     // здесь проблема - видимо нужна задержка между записью и чтением, так как считываются данные без нового комментария
-     api.getComment(params.itemID).
-        then((data) => {setComments(data)
-        console.log(data);
-        });
      event.target.comment.value = '';
+     // здесь проблема - видимо нужна задержка между записью и чтением, так как считываются данные без нового комментария
+     setLoad((prevState) => !prevState); 
+        
    
   };
-   
+
+
   return (
+    <CommentContext.Provider value={{comments, setComments}}>
     <Container maxWidth="1000">
       <div>
         <Button variant="contained"  style={{marginBottom: '20px'}} onClick={() => navigate('/')} >Назад</Button>
@@ -124,35 +125,12 @@ export const Item = () => {
         
         <List sx={{ width: '100%', maxWidth: 500, bgcolor: 'background.paper' }}>
         { comments?.map((comment) => (
-          <div key={comment._id}>
-          <ListItem alignItems="flex-start"  >
-          <ListItemAvatar>
-            <Avatar alt='avatarComment' src={comment.author.avatar} />
-          </ListItemAvatar>
-          <ListItemText
-          primary={comment.text}
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ mt: 3 }}
-                component="span"
-                variant="body2"
-                color="text.secondary"
-              >
-      
-               {dayjs(comment.created_at).format('MMMM D, YYYY h:mm A')}
-              </Typography>
-         
-            </React.Fragment>
-          }
-          
-          
+          <Comment comment={comment}
+                   key={comment._id}
+                  
           />
-         </ListItem>
-          <Divider variant="inset" component="li" />
-          </div>
+          
         ))}
-        
         </List>
         
         
@@ -168,5 +146,6 @@ export const Item = () => {
       </Paper>
      
      </Container>
+     </CommentContext.Provider>
   );
 };
