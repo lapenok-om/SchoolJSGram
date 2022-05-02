@@ -43,6 +43,18 @@ class Api {
 
     }
 
+    delComment(postId, commentId){
+        return fetch(`${this._url}/posts/comments/${postId}/${commentId}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `Bearer ${this._token}`,
+                },
+            
+        }).then(res => res.json())
+        .catch(err => alert(err.message));
+
+    }
+
     getMyInfo(){
         return fetch(`${this._url}/users/me`, {
             headers: {
