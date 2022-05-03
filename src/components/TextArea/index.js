@@ -7,7 +7,7 @@ export const TextArea = () => {
   return (
     <div className='container_textarea'>
       
-        <h2 className='text'>Welcome to Our Image Board!</h2>
+        <h2 className='text'>Добро пожаловать в SchoolJSGram :)</h2>
         <Button />
    
     </div>

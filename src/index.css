@@ -8,6 +8,7 @@ html {
 }
 body {
     font-family: 'Nunito', 'Arial', 'Helvetica', sans-serif;
+    background-image: url("../public/assets/svg/background70.png");
 }
 
 .appContainer {
@@ -16,6 +17,7 @@ body {
     align-items: center;
     justify-content: space-between;
     height: 100vh;
+    
     
 }
 
@@ -26,9 +28,11 @@ body {
     width: 95%;
     margin: 0 auto;
     
+    
 }
 
 .content {
     padding: 20px 0;
+    
     
 }

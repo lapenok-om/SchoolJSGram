@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
 import { Card } from '../Card';
 import UserContext from '../../contexts/userContext';
-import PostContext from '../../contexts/postContext';
 import './index.css';
 
-export const List = ({ setFavorites }) => {
+export const List = ({ setFavorites, postList }) => {
 
     const {user} = useContext(UserContext);
-    const {postList} = useContext(PostContext);
+    
    
     return (
         <div className="cards">
@@ -17,7 +16,8 @@ export const List = ({ setFavorites }) => {
                     setFavorites={setFavorites}
                     
                 />
-            ))}
+            ))} 
+
         </div>
     );
 };
