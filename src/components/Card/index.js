@@ -28,7 +28,7 @@ export const Card = ({ itemPost, isInFavorites, setFavorites }) => {
 
    const [open, setOpen] = useState(false);
    const {user} = useContext(UserContext);
-   const {setPostList} = useContext(PostContext);
+   const {setPostList, setPostListFull} = useContext(PostContext);
    
    const handleClickOpen = () => {
        setOpen(true);
@@ -75,6 +75,7 @@ export const Card = ({ itemPost, isInFavorites, setFavorites }) => {
 
    const removePost = () => {
       setPostList((prevState) => prevState.filter((item) => itemPost._id !== item._id));
+      setPostListFull((prevState) => prevState.filter((item) => itemPost._id !== item._id));
       api.deletePost(itemPost._id);
       setOpen(false);
            

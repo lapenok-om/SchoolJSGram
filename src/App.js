@@ -12,6 +12,7 @@ import UserContext from './contexts/userContext';
 
 
 import './index.css';
+;
 
 
 export const App = () => { 
@@ -34,9 +35,11 @@ export const App = () => {
             <div className='content container '>
             <Routes>
 
-                <Route path="/" element={<Body />}/>
+                <Route path="*" element={<Body />}/>
                 <Route path="posts/:itemID" element={<Item />} />
+                <Route path="favourite/posts/:itemID" element={<Item />} />
                 <Route path="posts/create" element={<CreatePost />} />
+                
             </Routes>
             </div> 
               <Footer />

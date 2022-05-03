@@ -25,8 +25,7 @@ export const Item = () => {
     const [load, setLoad] = useState(true);
     const params = useParams();
     
-
-
+    
     useEffect(() => {
         api.getPosts(params.itemID).
         then((data) => setItem(data));
@@ -59,7 +58,9 @@ export const Item = () => {
     <CommentContext.Provider value={{comments, setComments}}>
     <Container maxWidth="1000">
       <div>
-        <Button variant="contained"  style={{marginBottom: '20px'}} onClick={() => navigate('/')} >Назад</Button>
+        <Button variant="contained"  style={{marginBottom: '20px'}}
+         onClick={() => {if(window.location.pathname.startsWith("/favourite")) navigate('/favourite') 
+                        else navigate('/') }} >Назад</Button>
       </div>
       
       <Paper elevation={2}>

@@ -7,6 +7,7 @@ export const Footer = () => {
         <footer className='footer'>
             <div className='container'>
                 <p className='footer__copyright'>© Lapenok Olga</p>
+                <p className='footer__copyright'>© Babenko Vladimir</p>
             </div>
         </footer>
     );
