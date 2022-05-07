@@ -1,0 +1,18 @@
+.footer__copyright {
+	text-align: center;
+	font-size: 12px;
+	line-height: 15px;
+	color: #1a1a1a;
+}
+
+
+.footer {
+	border-top: 1px solid grey;
+	width: 100%;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	background-color:white ;
+	
+}
+
+
