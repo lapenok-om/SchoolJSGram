@@ -46,16 +46,16 @@ export const CreatePost = () => {
       <Grid container >
       <Grid container item flexDirection='column'xs={6}>
         <Grid item>
-        <TextField  sx={{ width: '50ch' }} label="Заголовок" name="title" variant="outlined"helperText=" " />
+        <TextField  sx={{ width: '50ch' }} label="Заголовок" name="title" variant="filled" helperText=" " />
         </Grid>
         <Grid item>
-        <TextField sx={{ width: '50ch' }} label="Текст" name="text" variant="outlined" helperText=" "/>
+        <TextField sx={{ width: '50ch' }} label="Текст" name="text" variant="filled" helperText=" "/>
         </Grid>
         <Grid item>
-        <TextField sx={{ width: '50ch' }} label="Картинка" name="image" variant="outlined" helperText=" "onChange={handleChange} />
+        <TextField sx={{ width: '50ch' }} label="Картинка" name="image" variant="filled" helperText=" "onChange={handleChange} />
         </Grid>
         <Grid item>
-        <TextField sx={{ width: '50ch' }} label="Тэги" name="tags" variant="outlined" helperText="Указываются через запятую" />
+        <TextField sx={{ width: '50ch' }} label="Тэги" name="tags" variant="filled" helperText="Указываются через запятую" />
         </Grid>
         </Grid>
 

@@ -27,7 +27,7 @@ export const App = () => {
     
    
     return (
-        <UserContext.Provider value={{user}} >
+        <UserContext.Provider value={{user, setUser}} >
            
         <div className='appContainer'>
                 <Header />

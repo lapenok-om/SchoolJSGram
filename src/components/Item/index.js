@@ -35,6 +35,7 @@ export const Item = () => {
     useEffect(() => {
       api.getComment(params.itemID).
       then((data) => setComments(data));
+      console.log('tratata')
 
   }, [load]);
     
@@ -45,10 +46,11 @@ export const Item = () => {
           target: {comment},
       } = event;
      
-     api.addComment(item._id, {text: comment.value});
+     api.addComment(item._id, {text: comment.value}).
+     then(() => api.getComment(params.itemID)).
+     then((data) => setComments(data));
      event.target.comment.value = '';
-     // здесь проблема - видимо нужна задержка между записью и чтением, так как считываются данные без нового комментария
-     setLoad((prevState) => !prevState); 
+    
         
    
   };
