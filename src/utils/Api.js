@@ -65,6 +65,21 @@ class Api {
 
     }
 
+    changeProfile(name, about){
+        return fetch(`${this._url}/users/me`, {
+            method: 'PATCH',
+            headers: {
+                authorization: `Bearer ${this._token}`,
+                'Content-Type': 'application/json',
+                },
+            body: JSON.stringify({
+                name: `${name}`,
+                about: `${about}`
+              }),
+        }).then(res => res.json())
+        .catch(err => alert(err.message));
+    }
+
     getComment(id){
         
         return fetch(`${this._url}/posts/comments/${id}`, {
