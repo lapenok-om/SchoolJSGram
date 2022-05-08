@@ -48,7 +48,15 @@ export const CreatePost = () => {
               <TextField sx={{ width: '50ch' }} label="Заголовок" name="title" variant="filled" helperText=" " />
             </Grid>
             <Grid item>
-              <TextField sx={{ width: '50ch' }} label="Текст" name="text" variant="filled" helperText=" " />
+              <TextField 
+              sx={{ width: '50ch' }} 
+              label="Текст" 
+              name="text" 
+              variant="filled" 
+              helperText=" " 
+              multiline
+              maxRows={4}
+              />
             </Grid>
             <Grid item>
               <TextField sx={{ width: '50ch' }} label="Картинка" name="image" variant="filled" helperText=" " onChange={handleChange} />

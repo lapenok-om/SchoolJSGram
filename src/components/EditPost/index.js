@@ -45,16 +45,39 @@ export const EditPost = () => {
                 <Grid container >
                     <Grid container item flexDirection='column' xs={6}>
                         <Grid item>
-                            <TextField sx={{ width: '50ch' }} label="Заголовок" name="title" variant="outlined" helperText=" " />
+                            <TextField 
+                            sx={{ width: '50ch' }} 
+                            label="Заголовок" 
+                            name="title" 
+                            variant="outlined" 
+                            helperText=" " 
+                            defaultValue={card.title}
+                            />
                         </Grid>
                         <Grid item>
-                            <TextField sx={{ width: '50ch' }} label="Текст" name="text" variant="outlined" helperText=" " />
+                            <TextField 
+                            sx={{ width: '50ch' }} 
+                            label="Текст" 
+                            name="text" 
+                            variant="outlined" 
+                            helperText=" "
+                            multiline
+                            maxRows={4}
+                            defaultValue={card.text}
+                            />
                         </Grid>
                         <Grid item>
                             <TextField sx={{ width: '50ch' }} label="Картинка" name="image" variant="outlined" helperText=" " onChange={handleChange} />
                         </Grid>
                         <Grid item>
-                            <TextField sx={{ width: '50ch', marginBottom: '15px' }} label="Тэги" name="tags" variant="outlined" helperText="Тэги можно указать через запятую" />
+                            <TextField 
+                            sx={{ width: '50ch', marginBottom: '15px' }} 
+                            label="Тэги" 
+                            name="tags" 
+                            variant="outlined" 
+                            helperText="Тэги можно указать через запятую" 
+                            defaultValue={card.tags}
+                            />
                         </Grid>
                     </Grid>
 

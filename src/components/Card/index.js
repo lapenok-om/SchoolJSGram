@@ -105,84 +105,90 @@ export const Card = ({ itemPost, isInFavorites, setFavorites }) => {
    };
 
    return (
-      <CardMui sx={{ maxWidth: 400, minWidth: 400 }} className='post_card'>
-         <CardHeader
-            avatar={
-               <Avatar
-                  sx={{ bgcolor: red[500] }}
-                  aria-label="recipe"
-                  src={itemPost.author ? itemPost.author.avatar : ''} />
-            }
-            title={itemPost.author.name}
-            subheader={itemPost.author.about}
-         />
-         <CardMedia
-            component="img"
-            height="194"
-            image={itemPost.image}
-            alt="Paella dish"
-         />
-         <CardContent className='card_content'>
-            <Button>
-               <Link to={`posts/${itemPost._id}`}> {itemPost.title}</Link></Button>
-         </CardContent>
-         <CardContent className='card_text'>
-            <Typography paragraph>
-               {itemPost.text}
-            </Typography>
-            <Typography color="text.secondary">{dayjs(itemPost.created_at).format('MMMM D, YYYY')}</Typography>
-            <Typography variant="OVERLINE" paragraph>
-               {itemPost.tags}
-            </Typography>
-         </CardContent>
-         <CardActions disableSpacing className='like'>
-            {isInFavorites ? (
-               <IconButton aria-label="add to favorites" size="small" onClick={removeFavorite}>
-                  <FavoriteIcon color="error" />
-                  {likesCount.length}
-               </IconButton>
-            ) : (
-               <IconButton aria-label="add to favorites" size="small" onClick={addFavorite}>
-                  <FavoriteBorderOutlinedIcon />
-                  {likesCount.length}
-               </IconButton>
-            )}
+      
 
-            {isAuthor ? (<Button onClick={handleClickOpen}>Удалить</Button>) : ('')}
-            {isAuthor ? (<Button
-               onClick={() => {
-                  navigate(`/posts/edit/${itemPost._id}`)
-                  return setCard(itemPost)
+         <CardMui sx={{ maxWidth: 400, minWidth: 400 }} className='post_card' >
+           
+            <CardHeader 
+               onClick={() => navigate(`posts/${itemPost._id}`)}
+               avatar={
+                  <Avatar
+                     sx={{ bgcolor: red[500] }}
+                     aria-label="recipe"
+                     src={itemPost.author ? itemPost.author.avatar : ''} />
                }
-               }
-            >
-               Редактировать
-            </Button>) : ('')}
-            <Dialog
-               open={open}
-               onClose={handleClose}
-               aria-labelledby="alert-dialog-title"
-               aria-describedby="alert-dialog-description"
-            >
-               <DialogTitle id="alert-dialog-title">
-                  {"Удаление"}
-               </DialogTitle>
+               title={itemPost.author.name}
+               subheader={itemPost.author.about}
+            />
+            <CardMedia
+               onClick={() => navigate(`posts/${itemPost._id}`)}
+               component="img"
+               height="194"
+               image={itemPost.image}
+               alt="Paella dish"
+            />
+            <CardContent className='card_content' onClick={() => navigate(`posts/${itemPost._id}`)}>
+               <Typography variant="h6">
+                  {itemPost.title}
+               </Typography>
+            </CardContent>
+            <CardContent className='card_text' onClick={() => navigate(`posts/${itemPost._id}`)}>
+               <Typography paragraph className='thypografy'>
+                  {itemPost.text}
+               </Typography>
+               <Typography color="text.secondary">{dayjs(itemPost.created_at).format('MMMM D, YYYY')}</Typography>
+               <Typography variant="OVERLINE" paragraph>
+                  {itemPost.tags}
+               </Typography>
+            </CardContent>
+            <CardActions disableSpacing className='like'>
+               {isInFavorites ? (
+                  <IconButton aria-label="add to favorites" size="small" onClick={removeFavorite}>
+                     <FavoriteIcon color="error" />
+                     {likesCount.length}
+                  </IconButton>
+               ) : (
+                  <IconButton aria-label="add to favorites" size="small" onClick={addFavorite}>
+                     <FavoriteBorderOutlinedIcon />
+                     {likesCount.length}
+                  </IconButton>
+               )}
 
-               <DialogContent>
-                  <DialogContentText id="alert-dialog-description">
-                     Вы действительно хотите удалить этот пост?
-                  </DialogContentText>
-               </DialogContent>
-               <DialogActions>
-                  <Button onClick={handleClose}>Нет</Button>
-                  <Button onClick={removePost} autoFocus>
-                     Да
-                  </Button>
-               </DialogActions>
-            </Dialog>
-         </CardActions>
+               {isAuthor ? (<Button onClick={handleClickOpen}>Удалить</Button>) : ('')}
+               {isAuthor ? (<Button
+                  onClick={() => {
+                     navigate(`/posts/edit/${itemPost._id}`)
+                     return setCard(itemPost)
+                  }
+                  }
+               >
+                  Редактировать
+               </Button>) : ('')}
+               <Dialog
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="alert-dialog-title"
+                  aria-describedby="alert-dialog-description"
+               >
+                  <DialogTitle id="alert-dialog-title">
+                     {"Удаление"}
+                  </DialogTitle>
 
-         {/* <CardActions>
+                  <DialogContent>
+                     <DialogContentText id="alert-dialog-description">
+                        Вы действительно хотите удалить этот пост?
+                     </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                     <Button onClick={handleClose}>Нет</Button>
+                     <Button onClick={removePost} autoFocus>
+                        Да
+                     </Button>
+                  </DialogActions>
+               </Dialog>
+            </CardActions>
+
+            {/* <CardActions>
             <Button sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                <Link to={`posts/${itemPost._id}`}> {itemPost.title}</Link></Button>
          </CardActions>
@@ -248,7 +254,7 @@ export const Card = ({ itemPost, isInFavorites, setFavorites }) => {
             </Dialog>
 
          </CardActions> */}
-      </CardMui>
-
+         </CardMui>
+   
    );
 };

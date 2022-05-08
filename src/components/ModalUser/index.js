@@ -12,6 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import { useApi } from '../../hooks/useApi';
 
 
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -36,6 +37,7 @@ export const ModalUser = () => {
 
   const handleChangeAvatar = (event) => {
     setAvatar(event.target.value);
+    console.log(event.target.value);
   };
 
   const changeProfile = (event) => {
