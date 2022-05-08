@@ -52,6 +52,7 @@ export const App = () => {
                                 <Route path="*" element={<Body />} />
                                 <Route path="posts/:itemID" element={<Item />} />
                                 <Route path="favourite/posts/:itemID" element={<Item />} />
+                                <Route path="myPosts/posts/:itemID" element={<Item />} />
                                 <Route path="posts/create" element={<CreatePost />} />
                                 <Route path="posts/edit/:itemID" element={<EditPost />} />
 

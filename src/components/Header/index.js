@@ -25,6 +25,9 @@ export const Header = () => {
                         <Link underline="hover" component="button" onClick={() => navigate('/favourite')}>
                         Избранное
                         </Link>
+                        <Link underline="hover" component="button" onClick={() => navigate('/myPosts')}>
+                        Мои посты
+                        </Link>
                         <Link underline="hover" href="https://github.com/lapenok-om/SchoolProject">
                         GitHub
                         </Link>

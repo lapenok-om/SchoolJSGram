@@ -97,6 +97,21 @@ class Api {
             .catch(err => alert(err.message));
     }
 
+
+    changeAvatar(avatar){
+        return fetch(`${this._url}/users/me/avatar`, {
+            method: 'PATCH',
+            headers: {
+                authorization: `Bearer ${this._token}`,
+                'Content-Type': 'application/json',
+                },
+            body: JSON.stringify({
+                avatar: `${avatar}`,
+                }),
+        }).then(res => res.json())
+        .catch(err => alert(err.message));
+    }
+
     getComment(id) {
 
         return fetch(`${this._url}/posts/comments/${id}`, {

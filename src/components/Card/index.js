@@ -55,7 +55,7 @@ export const Card = ({ itemPost, isInFavorites, setFavorites }) => {
 
    let isAuthor = false;
    if (itemPost.author !== null) {
-      console.log(user._id);
+      
       if (itemPost.author._id == user._id) {
          isAuthor = true;
       }
@@ -99,6 +99,7 @@ export const Card = ({ itemPost, isInFavorites, setFavorites }) => {
 
    const removePost = () => {
       setPostList((prevState) => prevState.filter((item) => itemPost._id !== item._id));
+      setPostListFull((prevState) => prevState.filter((item) => itemPost._id !== item._id));
       api.deletePost(itemPost._id);
       setOpen(false);
 

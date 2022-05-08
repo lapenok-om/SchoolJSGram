@@ -94,6 +94,17 @@ export const Body = () => {
           </>
         } />
 
+
+        <Route path="myPosts" element={
+                  <>
+                  <div className='textarea_favourite'>
+                    <h2 className='text'>Мои посты</h2>
+                  </div>
+                  <div className='content__cards'>
+                  <List setFavorites={setFavorites} postList={postListFull?.filter((item) => (item.author._id == user._id))} />
+                  </div>
+                  </>
+                } />
       </Routes>
     </PostContext.Provider>
   )

@@ -37,16 +37,17 @@ export const ModalUser = () => {
 
   const handleChangeAvatar = (event) => {
     setAvatar(event.target.value);
-    console.log(event.target.value);
+    
   };
 
   const changeProfile = (event) => {
     event.preventDefault();
 
     const {
-      target: { name, about },
+      target: { name, about, avatar },
     } = event;
 
+    api.changeAvatar(avatar.value);
     api.changeProfile(name.value, about.value).
       then(() => api.getMyInfo()).
       then(data => setUser(data));
@@ -71,7 +72,7 @@ export const ModalUser = () => {
                 </Typography>
               </Grid>
               <Grid item xs={10}>
-                <TextField fullWidth label='Аватар' name="avatar" variant='outlined' required defaultValue={user.avatar} onChange={handleChangeAvatar} />
+               <TextField fullWidth label='Аватар' name="avatar" variant='outlined' required defaultValue={user.avatar} onInput={handleChangeAvatar}/>
               </Grid>
               <Grid item xs={2}>
                 <Avatar alt="author" src={`${avatar}`} />

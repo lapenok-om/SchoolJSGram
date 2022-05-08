@@ -63,6 +63,7 @@ export const Item = () => {
       <div>
         <Button variant="contained"  style={{marginBottom: '20px'}}
          onClick={() => {if(window.location.pathname.startsWith("/favourite")) navigate('/favourite') 
+                         else if(window.location.pathname.startsWith("/myPosts")) navigate('/myPosts') 
                         else navigate('/') }} >Назад</Button>
       </div>
       
