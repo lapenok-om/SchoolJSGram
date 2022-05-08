@@ -24,7 +24,8 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 import UserContext from '../../contexts/userContext';
 import PostContext from '../../contexts/postContext';
 import CardContext from '../../contexts/cardContext';
-import ModalContext from "../../contexts/modalContext"
+import ModalContext from "../../contexts/modalContext";
+import TagsContext from '../../contexts/tagsContext';
 
 import { useApi } from '../../hooks/useApi';
 
@@ -34,7 +35,7 @@ import './index.css';
 export const Card = ({ itemPost, isInFavorites, setFavorites }) => {
    const api = useApi();
    const navigate = useNavigate();
-
+   const { setTags } = useContext(TagsContext);
    const [open, setOpen] = useState(false);
 
    const { user } = useContext(UserContext);
@@ -129,7 +130,7 @@ export const Card = ({ itemPost, isInFavorites, setFavorites }) => {
                alt="Paella dish"
             />
             <CardContent className='card_content' onClick={() => navigate(`posts/${itemPost._id}`)}>
-               <Typography variant="h6">
+               <Typography variant="h6" className='thypografy1'>
                   {itemPost.title}
                </Typography>
             </CardContent>
@@ -138,10 +139,23 @@ export const Card = ({ itemPost, isInFavorites, setFavorites }) => {
                   {itemPost.text}
                </Typography>
                <Typography color="text.secondary">{dayjs(itemPost.created_at).format('MMMM D, YYYY')}</Typography>
-               <Typography variant="OVERLINE" paragraph>
-                  {itemPost.tags}
-               </Typography>
+               
             </CardContent>
+
+            <CardContent>
+            {itemPost.tags.map((item, index) => 
+               <Button onClick={() => {
+                  navigate('/tags');
+                  setTags(item)
+               }} key={index}>
+                  <Typography variant="OVERLINE" paragraph>
+                     {'#'+item}
+                  </Typography>
+               </Button>)}
+           </CardContent>
+
+
+
             <CardActions disableSpacing className='like'>
                {isInFavorites ? (
                   <IconButton aria-label="add to favorites" size="small" onClick={removeFavorite}>

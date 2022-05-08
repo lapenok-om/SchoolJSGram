@@ -9,7 +9,7 @@ import Pagination from '@mui/material/Pagination';
 import PostContext from '../../contexts/postContext';
 import UserContext from '../../contexts/userContext';
 import FormModalContext from '../../contexts/formModalContext';
-
+import TagsContext from '../../contexts/tagsContext';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 import { useApi } from '../../hooks/useApi';
@@ -19,7 +19,7 @@ import './index.css';
 export const Body = () => {
   const api = useApi();
   const { readLS } = useLocalStorage();
-
+  const [tags, setTags] = useState(null);
   const [postList, setPostList] = useState(null);
   const [postListFull, setPostListFull] = useState(null);
   const [page, setPage] = useState(1);
@@ -63,6 +63,7 @@ export const Body = () => {
 
   return (
     <PostContext.Provider value={{ postList, setPostList, setPostListFull }}>
+      <TagsContext.Provider value={{ tags, setTags }}>
       <Routes>
 
         <Route path="/" element={
@@ -105,7 +106,25 @@ export const Body = () => {
                   </div>
                   </>
                 } />
+
+
+
+        <Route path="/tags" element={
+              <>
+                <div className='textarea_favourite'>
+                  <h2 className='text'>Посты по тегу {tags}</h2>
+                </div>
+                <div className='content__cards'>
+                  <List
+                    setFavorites={setFavorites}
+                    postList={postListFull?.filter((item) => (item.tags.includes(tags)))} />
+                </div>
+              </>
+            } />
+
+        
       </Routes>
+      </TagsContext.Provider>
     </PostContext.Provider>
   )
 }
