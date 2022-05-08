@@ -3,6 +3,7 @@ import React, { useState, useContext } from 'react';
 import FormModalContext from '../../contexts/formModalContext';
 import UserContext from '../../contexts/userContext';
 import Logo from '../Logo';
+import { useNavigate } from 'react-router-dom'
 
 import { useApi } from '../../hooks/useApi';
 
@@ -47,7 +48,7 @@ export default function FormModal() {
   const [about, setAbout] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const navigate = useNavigate();
   const api = useApi();
 
 
@@ -100,6 +101,7 @@ export default function FormModal() {
         });
       });
 
+      navigate('/');
   }
 
   return (
