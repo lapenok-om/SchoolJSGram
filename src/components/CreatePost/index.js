@@ -45,7 +45,7 @@ export const CreatePost = () => {
         <Grid container >
           <Grid container item flexDirection='column' xs={6}>
             <Grid item>
-              <TextField sx={{ width: '50ch' }} label="Заголовок" name="title" variant="filled" helperText=" " />
+              <TextField sx={{ width: '50ch' }} label="Заголовок" name="title" variant="filled" required helperText=" " />
             </Grid>
             <Grid item>
               <TextField 
@@ -55,6 +55,7 @@ export const CreatePost = () => {
               variant="filled" 
               helperText=" " 
               multiline
+              required
               maxRows={4}
               />
             </Grid>

@@ -55,6 +55,9 @@ export const App = () => {
                                 <Route path="myPosts/posts/:itemID" element={<Item />} />
                                 <Route path="posts/create" element={<CreatePost />} />
                                 <Route path="posts/edit/:itemID" element={<EditPost />} />
+                                <Route path="tags/posts/:itemID" element={<Item />} />
+
+
 
                             </Routes>
                         </div>

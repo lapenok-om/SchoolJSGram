@@ -50,6 +50,7 @@ export const EditPost = () => {
                             label="Заголовок" 
                             name="title" 
                             variant="outlined" 
+                            required
                             helperText=" " 
                             defaultValue={card.title}
                             />
@@ -59,7 +60,8 @@ export const EditPost = () => {
                             sx={{ width: '50ch' }} 
                             label="Текст" 
                             name="text" 
-                            variant="outlined" 
+                            variant="outlined"
+                            required 
                             helperText=" "
                             multiline
                             maxRows={4}

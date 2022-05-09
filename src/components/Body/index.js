@@ -73,7 +73,7 @@ export const Body = () => {
             <div className='content__cards'>
               <List setFavorites={setFavorites} postList={postList} />
             </div>
-            <Pagination sx={{ mb: 3, mt: 3, ml: 45 }}
+            <Pagination sx={{ mb: 3, mt: 3, ml: 60 }}
               count={pageCount}
               page={page}
               onChange={(_, number) => setPage(number)}

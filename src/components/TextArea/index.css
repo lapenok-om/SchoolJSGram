@@ -3,10 +3,13 @@
     display: flex;
 	align-items: center;
 	justify-content: space-evenly;
-    max-width: 1024px;
+    max-width: 1200px;
     margin: 0 auto;
+    margin-right: 0%;
+    
 }
 
 .text{
     width: 100%;
+            
 }

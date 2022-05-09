@@ -9,7 +9,7 @@ export const Button = () => {
 
   return (
     <div className='button'>
-    <ButtonMui variant="contained" onClick={() => navigate(`posts/create`)}> Create Post</ButtonMui>
+    <ButtonMui variant="contained" onClick={() => navigate(`posts/create`)}> Создать пост</ButtonMui>
     </div>
   );
 }
