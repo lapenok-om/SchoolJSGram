@@ -11,4 +11,5 @@ ____
 **yarn start**
 ____
 Ссылка на видео-описание проекта: <br>
+[![видео](https://img.youtube.com/vi/1JK6jZlTNAk/0.jpg)](https://youtu.be/1JK6jZlTNAk)
 
